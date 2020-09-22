@@ -1,13 +1,20 @@
 #!/bin/bash
 
+if ! [[ $2 =~ ^-?[0-9]+$ ]] || ! [[ $3 =~ ^-?[0-9]+$ ]]
+    then
+    echo "Error: third and fourth argument must be integer numbers" >&2
+    exit -1
+fi
+
 case $1 in
 "sum") echo $[ $2 + $3 ];;
 "sub") echo $[ $2 - $3 ];;
 "mul") echo $[ $2 * $3 ];;
 "div") if [ $3 -eq 0 ]
-       then echo "Error: division by zero"
+       then echo "Error: division by zero" >&2
        else echo $[ $2 / $3 ]
        fi
        ;;
-*) echo "Error: operation not found";;
+
+*) echo "Error: operation not found" >&2;;
 esac
