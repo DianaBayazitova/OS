@@ -1,3 +1,15 @@
 #!/bin/bash
 
-grep -R $3 $2
+#[[ -n "$1" && -n "$2" ]] &&
+ #   {[[ -d "$1" ]] && {grep -R $2 $1;} || echo "Error: no such directory"; >&2 }
+#"Error: enter both arguments" >&2
+
+[[ -z "$1" && -z "$2" ]] && {
+    echo "Error: enter both arguments" >&2
+    exit -4
+}
+
+[[ -d "$1" ]] && grep -R $2 $1 || {
+    echo "Error: no such directory" >&2
+    exit -5
+}
