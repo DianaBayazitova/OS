@@ -1,0 +1,52 @@
+#!/bin/bash
+
+menu=$"MENU:
+a. Calculator;
+b. Search;
+c. Reverse;
+d. Strlen(string length);
+e. Log;
+f. Exit;
+g. Help;
+Enter the letter or name of command."
+
+echo "$menu"
+
+read enter
+if [[ "$enter" = "a" ]] || [[ "$enter" = "Calculator" ]]
+then
+echo "Enter a command and two numbers"
+read command number1 number2
+./calc $command $number1 $number2
+elif
+[[ "$enter" = "b" ]] || [[ "$enter" = "Search" ]]
+then
+echo "Enter a directory and string"
+read directory string
+./search $directory $string
+elif
+[[ "$enter" = "c" ]] || [[ "$enter" = "Reverse" ]]
+then
+echo "Enter two file's names"
+read file1 file2
+./reverse $file1 $file2
+elif
+[[ "$enter" = "d" ]] || [[ "$enter" = "Strlen" ]]
+then
+echo "Enter a line"
+read line
+./strlen $line
+elif
+[[ "$enter" = "e" ]] || [[ "$enter" = "Log" ]]
+then
+./log
+elif
+[[ "$enter" = "f" ]] || [[ "$enter" = "Exit" ]]
+then
+./exit
+elif
+[[ "$enter" = "g" ]] || [[ "$enter" = "Help" ]]
+then
+./help
+fi
+
