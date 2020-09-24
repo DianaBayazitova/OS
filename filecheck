@@ -1,0 +1,45 @@
+#!/bin/bash
+
+FL=$(ls -1)
+files="calc
+exit
+#fru
+help
+log
+menu
+reverse
+search
+strlen"
+NFfiles=$(diff -u <( echo "$files" ) <( echo "$FL" ) | grep '^-')
+for NF in $NFfiles
+do
+NF="${NF:1}"
+if [[ $NF = "calc" ]]
+then
+echo "Calculator is not found"
+elif [[ $NF = "search" ]]
+then
+echo "Search is not found"
+elif [[ $NF = "reverse" ]]
+then
+echo "Reverse is not found"
+elif [[ $NF = "strlen" ]]
+then
+echo "Strlen is not found"
+elif [[ $NF = "log" ]]
+then
+echo "Log is not found"
+elif [[ $NF = "help" ]]
+then
+echo "Help is not found"
+elif [[ $NF = "menu" ]]
+then
+echo "Interactive is not found"
+elif [[ $NF = "exit" ]]
+then
+echo "Exit is not found"
+#elif [[ $NF = "fru" ]]
+#then
+#echo "kek"
+fi
+done

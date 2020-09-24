@@ -1,4 +1,4 @@
 #!/bin/bash
 
-size=${#2}
+size=${#1}
 echo "$size"

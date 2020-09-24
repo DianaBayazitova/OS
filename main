@@ -1,0 +1,29 @@
+#!/bin/bash
+
+./filecheck
+
+if [[ "$1" = "calc" ]]
+then
+./calc $2 $3 $4
+elif [[ "$1" = "search" ]]
+then
+./search $2 $3
+elif [[ "$1" = "reverse" ]]
+then
+./reverse $2 $3
+elif [[ "$1" = "strlen" ]]
+then
+./strlen $2
+elif [[ "$1" = "log" ]]
+then
+./log
+elif [[ "$1" = "exit" ]]
+then
+./exit
+elif [[ "$1" = "help" ]]
+then
+./help
+elif [[ "$1" = "interactive" ]]
+then
+./menu
+fi

@@ -1,3 +1,9 @@
 #!/bin/bash
 
-tac $2 > $3
+if ![[ -f $1 ]]
+then
+echo "Error: no such file" >&2
+exit -6
+fi
+
+tac $1 > $2
