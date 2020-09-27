@@ -12,17 +12,9 @@ d. Strlen(string length);
 e. Log;
 f. Exit;
 g. Help;
-Enter the letter or name of command.
-Exit codes:
--1 - operation not found;
--2 - third and fourth arguments mus be integer numbers;
--3 - division by zero;
--4 - enter both arguments;
--5 - no such directory;
--6 - no such file
--7 - invalid return code."
+Enter the letter or name of command."
 
-echo -e "\033[31m$menu\e[0m"
+echo -e "\033[35m$menu\e[0m"
 
 read enter
 if [[ "$enter" = "a" ]] || [[ "$enter" = "Calculator" ]]
@@ -55,8 +47,10 @@ then
 elif
 [[ "$enter" = "f" ]] || [[ "$enter" = "Exit" ]]
 then
-./exit $1
-exit
+echo "Enter an exit code"
+read exitcode
+./exit $exitcode
+exit $exitcode
 elif
 [[ "$enter" = "g" ]] || [[ "$enter" = "Help" ]]
 then

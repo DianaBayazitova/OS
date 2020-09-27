@@ -1,4 +1,10 @@
 #!/bin/bash
 
 size=${#1}
+if [[ $size = 0 ]]
+then
+echo "Error: empty string" >&2
+exit -8
+else
 echo "$size"
+fi

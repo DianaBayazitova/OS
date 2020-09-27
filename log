@@ -1,5 +1,5 @@
 #!/bin/bash
 
-grep "WW" /var/log/anaconda/X.log | sed ''/WW/s//`printf "\033[93mWarning:\033[0m"`/'' > tmp
-grep "II" /var/log/anaconda/X.log | sed ''/II/s//`printf "\033[34mInformation:\033[0m"`/'' >> tmp
+grep "\] (WW)" /var/log/anaconda/X.log | sed ''/\(WW\)/s//`printf "\033[93mWarning:\033[0m"`/'' > tmp
+grep "\] (II)" /var/log/anaconda/X.log | sed ''/\(II\)/s//`printf "\033[34mInformation:\033[0m"`/'' >> tmp
 cat tmp

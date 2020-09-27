@@ -5,7 +5,7 @@
     exit -4
 }
 
-[[ -d "$1" ]] && grep -R $2 $1 || {
+[[ -d "$1" ]] &&  grep -Rs $2 $1 || {
     echo "Error: no such directory" >&2
     exit -5
 }

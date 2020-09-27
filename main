@@ -3,27 +3,55 @@
 ./filecheck
 
 if [[ "$1" = "calc" ]]
-then
-./calc $2 $3 $4
-elif [[ "$1" = "search" ]]
-then
-./search $2 $3
-elif [[ "$1" = "reverse" ]]
-then
-./reverse $2 $3
-elif [[ "$1" = "strlen" ]]
-then
-./strlen $2
-elif [[ "$1" = "log" ]]
-then
-./log
-elif [[ "$1" = "exit" ]]
-then
-./exit
-elif [[ "$1" = "help" ]]
-then
-./help
-elif [[ "$1" = "interactive" ]]
-then
-./menu
+   then
+   if [[ "$#" -eq 4 ]]
+      then
+      ./calc $2 $3 $4
+   else
+   echo "Error: not enough arguments" >&2
+   exit -10
+   fi
+   elif [[ "$1" = "search" ]]
+      then
+      if [[ "$#" -eq 3 ]]
+         then
+         ./search $2 $3
+      else
+      echo "Error: not enough arguments" >&2
+      exit -10
+      fi
+      elif [[ "$1" = "reverse" ]]
+         then
+         if [[ "$#" -eq 3 ]]
+             then
+             ./reverse $2 $3
+         else
+         echo "Error: not enough arguments" >&2
+         exit -10
+         fi
+         elif [[ "$1" = "strlen" ]]
+             then
+             if [[ "$#" -eq 2 ]]
+                 then
+                 ./strlen $2
+              else
+              echo "Error: not enough arguments" >&2
+              exit -10
+              fi
+              elif [[ "$1" = "log" ]]
+                  then
+                  ./log
+              elif [[ "$1" = "exit" ]]
+                  then
+                  ./exit $2
+                  exit $2
+              elif [[ "$1" = "help" ]]
+                  then
+                  ./help
+              elif [[ "$1" = "interactive" ]]
+                  then
+                  ./menu
+              else
+              echo "Error: command not found" >&2
+              exit -9
 fi

@@ -1,9 +1,18 @@
 #!/bin/bash
 
-if ![[ -f $1 ]]
+if ! [[ -f $1 ]]
 then
 echo "Error: no such file" >&2
 exit -6
+   elif [[ $1 = $2 ]]
+   then
+   echo "Error: the file names match" >&2
+   exit -11
+     elif [[ "$#" -ne 2 ]]
+     then
+     echo "Error: not enough arguments" >&2
+     exit -10
+        else
+        tac $1 > $2
 fi
 
-tac $1 > $2
