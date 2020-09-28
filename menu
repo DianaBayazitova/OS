@@ -55,5 +55,8 @@ elif
 [[ "$enter" = "g" ]] || [[ "$enter" = "Help" ]]
 then
 ./help
+else
+echo "Error: command not found" >&2
+exit -9
 fi
 done

@@ -5,7 +5,10 @@
     exit -4
 }
 
-[[ -d "$1" ]] &&  grep -Rs $2 $1 || {
+if [[ -d "$1" ]]
+then
+    grep -IRs $2 $1
+else
     echo "Error: no such directory" >&2
     exit -5
-}
+fi
