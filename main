@@ -33,7 +33,7 @@ if [[ "$1" = "calc" ]]
              then
              if [[ "$#" -eq 2 ]]
                  then
-                 ./strlen $2
+                 ./strlen "$2"
               else
               echo "Error: not enough arguments" >&2
               exit -10

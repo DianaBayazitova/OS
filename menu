@@ -37,9 +37,9 @@ read file1 file2
 elif
 [[ "$enter" = "d" ]] || [[ "$enter" = "Strlen" ]]
 then
-echo "Enter a line"
+echo "Enter a line (if you have spaces, inclose it in quotes)"
 read line
-./strlen $line
+./strlen "$line"
 elif
 [[ "$enter" = "e" ]] || [[ "$enter" = "Log" ]]
 then
