@@ -11,9 +11,16 @@ exit -6
 else
  if [[ -e $2 ]]
    then
-	   if [[ -r $1 && -w $2 ]]
+   if [[ -r $1 && -w $2 ]]
            then
-	    tac $1 > $2
+	    if [[ "$1" != "$2" ]]
+		then
+       	         tac $1 > $2
+   		else
+		cat $1 > tmp
+		tac tmp > $2
+		rm tmp
+	    fi
 	   else
 	    echo "Error: permission denied" >&2
             exit -8
