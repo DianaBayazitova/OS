@@ -1,0 +1,9 @@
+Amount of pairs:
+7
+1408:/usr/lib/systemd/systemd
+1413:(sd-pam)
+1419:-bash
+17879:/bin/bash
+17880:ps
+17881:grep
+17882:awk
