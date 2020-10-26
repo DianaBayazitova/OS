@@ -21,6 +21,6 @@ cat output4 | while read str; do
 		ppid=$ppid4
 	fi
 	if [[ ! -z $ppid4 ]]; then
-		echo "PID = "$PID4" : PPID = "$ppid4" : ART = "$ART4
+		echo "ProcessID = "$PID4" : Parent_ProcessID = "$ppid4" : Average_Running_Time = "$ART4
 	fi
 done > output5
