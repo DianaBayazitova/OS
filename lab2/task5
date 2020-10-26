@@ -1,2 +1,26 @@
 #!/bin/bash
 
+ppid=0
+ART=0
+COUNT=0
+CHILDREN=0
+ARTsum=0
+
+cat output4 | while read str; do
+	PID4=$(echo "$str" | awk '{print $3}')
+	ppid4=$(echo "$str" | awk '{print $7}')
+	ART4=$(echo "$str" | awk '{print $11}')
+	if [[ $ppid4 == $ppid ]]; then
+		ARTsum=$(echo "scale=4; $ARTsum + $ART4" | bc)
+		COUNT=$(($COUNT+1))
+	else
+		CHILDREN=$(echo "scale=4; $ARTsum / $COUNT" | bc)
+		echo "Average_Sleeping_Children_of_ParentID = $ppid is $CHILDREN"
+		ARTsum=$ART4
+		COUNT=1
+		ppid=$ppid4
+	fi
+	if [[ ! -z $ppid4 ]]; then
+		echo "PID = "$PID4" : PPID = "$ppid4" : ART = "$ART4
+	fi
+done > output5

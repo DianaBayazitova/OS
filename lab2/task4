@@ -7,4 +7,4 @@ for PID in $(ps -Ao pid | tail -n +2 | head -n -4); do
 	nr_switches=$(cat $file"/sched" | awk '{if ($1 == "nr_switches") print $3}')
 	ART=$(echo "scale=4; $se_sum_exec_runtime / $nr_switches" | bc)
 	echo "$PID $ppid $ART"
-done | sort -n --key=2 | awk '{print "ProcessID="$1" : Parent_ProcessID="$2" : Average_Running_Time="$3}' > output4
+done | sort -n --key=2 | awk '{print "ProcessID = "$1" : Parent_ProcessID = "$2" : Average_Running_Time = "$3}' > output4
