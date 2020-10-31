@@ -1,0 +1,15 @@
+#!/bin/bash
+#ps -e -o pid,vsz | sort -nrk2 | head -n1
+maxRAM=-1
+maxPID=-1
+
+for PID in $(ps aux | awk '{print $2}'); do
+	if [[ -d /proc/"$PID" ]]; then
+		RAM=$(grep -i "VmSize:" /proc/$PID/status | awk '{print $2}')
+		if [[ $RAM > $maxRAM ]]; then
+			maxRAM=$RAM
+			maxPID=$PID
+		fi
+	fi
+done
+echo "$maxPID"
