@@ -1,5 +1,5 @@
 #!/bin/bash
-#ps -e -o pid,vsz | sort -nrk2 | head -n1
+
 maxRAM=-1
 maxPID=-1
 
