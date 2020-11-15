@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for pid in $(ps aux | awk '{print $2}' | head -n -5 | tail -n +2)
+	do
+		bytes=$(grep -s "read_bytes" "/proc/"$pid"/io" | grep -Eo "[0-9]+")
+		if [[ -n $bytes ]]
+			then
+				echo "$pid $bytes"
+		fi
+	done > tmp
+sleep 3s
+for pid in $(ps aux | awk '{print $2}' | head -n -5 | tail -n +2)
+	do
+		cmd=$(cat /proc/"$pid"/cmdline | tr -d '\0')
+		new_bytes=$(grep -s "read_bytes" "/proc/"$pid"/io" | grep -Eo "[0-9]+")
+		bytes=$(cat tmp | grep "$pid" | awk '{print $2}')
+		if [[ -n $bytes && -n $new_bytes ]]
+			then
+				diff=$(($new_bytes - $bytes))
+				echo "$pid:$cmd:$diff"
+		fi
+	done | sort -nt ':' --key=3 | head -3
+rm tmp
