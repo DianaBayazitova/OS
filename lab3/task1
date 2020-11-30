@@ -1,0 +1,5 @@
+#!/bin/bash
+
+d=$(date '+%F_%T')
+mkdir ~/test && echo "catalog test was created successfully" > ~/report && touch ~/test/$d
+ping www.net_nikogo.ru || echo "$d Error: host is not available" >> ~/report
