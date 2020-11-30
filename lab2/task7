@@ -8,7 +8,7 @@ for pid in $(ps aux | awk '{print $2}' | head -n -5 | tail -n +2)
 				echo "$pid $bytes"
 		fi
 	done > tmp
-sleep 3s
+sleep 1m
 for pid in $(ps aux | awk '{print $2}' | head -n -5 | tail -n +2)
 	do
 		cmd=$(cat /proc/"$pid"/cmdline | tr -d '\0')
