@@ -1,0 +1,10 @@
+#!/bin/bash
+
+./task4&res1=$!
+./task4&res2=$!
+./task4&res3=$!
+
+renice +11 -p $res1
+
+at now +1 minute <<< "kill $res3" 2>/dev/null
+at now +2 minutes <<< "kill $res1; kill $res2" 2>/dev/null
