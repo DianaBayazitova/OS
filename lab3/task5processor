@@ -1,0 +1,29 @@
+#!/bin/bash
+
+command="+"
+number=1
+tail -f pipe | while true; do
+	read line
+	case $line in
+	"+")
+		command="$line";;
+	"*")
+		command="$line";;
+	"QUIT")
+		killall tail
+		exit 0;;
+	[0-9]*)
+		case $command in
+			"+")
+				number=$(( $number + $line ))
+				echo "Result = $number";;
+			"*")
+				number=$(( $number + $line ))
+				echo "Result = $number";;
+		esac;;
+	*)
+		killall tail
+		echo "Input data-error"
+		exit -1;;
+	esac
+done

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkfifo pipe
+./task5processor & ./task5generator
+rm pipe
