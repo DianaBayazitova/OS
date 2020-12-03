@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./task6processor&proc=$!
+./task6generator &proc

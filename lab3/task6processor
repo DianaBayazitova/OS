@@ -1,0 +1,30 @@
+#!/bin/bash
+
+command="+"
+number=1
+
+TERM() {
+	exit 0
+}
+USR1() {
+	command="+"
+}
+USR2() {
+	command="*"
+}
+
+trap 'TERM' 15
+trap 'USR1' 10
+trap 'USR2' 12
+
+while true; do
+	case "$command" in
+	"+")
+		number=$(( $number + 2 ));;
+	"*")
+		number=$(( $number * 2 ));;
+	esac
+echo "$number"
+sleep 1s
+done
+
