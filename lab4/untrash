@@ -8,6 +8,12 @@ if [[ -e "$file" ]]
 	exit -3 >&2
 fi
 
+if [[ -d $file ]]
+	then
+	echo "Rename directory"
+	exit -5 >&2
+fi
+
 if [[ $# -ne 1 ]]
 	then
 	echo "Error: wrong number of arguments"
