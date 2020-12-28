@@ -1,0 +1,47 @@
+#!/bin/bash
+
+cd ~/
+last_backup_date="$(ls | grep "^Backup-" | sort -n | tail -1 | cut -d "-" -f 2,3,4)"
+
+should_make_dir=8
+
+date="$(date +%Y-%m-%d)"
+
+if [[ -n "$last_backup_date" ]]
+	then
+	sec_is="$(date -d $date +%s)"
+	sec_was="$(date -d $last_backup_date +%s)"
+	let should_make_dir=($sec_is-$sec_was)/60/60/24
+	else
+	should_make_dir=8
+fi
+if [[ $should_make_dir -gt 7 ]]
+	then
+	mkdir "Backup-$date"
+	cd ~/source
+	source_files="$(ls)"
+	for file in $source_files; do
+		cp $file ~/Backup-$date
+	done
+	cd ~
+	echo "Directory Backup-$date was created. Files:$source_files" >> backup-report
+	else
+	cd ~/source
+	source_files="$(ls)"
+	cd ~/Backup-$last_backup_date
+	for file in $source_files; do
+		if [[ -f "$file" ]]
+			then
+			size_is="$(ls -l ~/source/$file | awk '{print $5}')"
+			size_was="$(ls -l $file | awk '{print $5}')"
+			if [[ $size_is -ne $size_was ]]
+				then
+				mv $file $file-$date
+				cp ~/source/$file ~/Backup-$last_backup_date
+				echo "Rename $file to $file-$date" >> ~/backup-report
+			fi
+		else
+		cp ~/source/$file ~/Backup-$last_backup_date
+		fi
+	done
+fi

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+file=$1
+count="$(cat count)"
+
+if [[ ! -e "$file" ]]
+	then
+	echo "Error: the file doesn't exist"
+	exit -1 >&2
+fi
+
+if [[ $# -ne 1 ]]
+	then
+	echo "Error: wrong number of arguments"
+	exit -2 >&2
+fi
+
+if [[ ! -e ~/.trash ]]
+	then
+	mkdir ~/.trash
+fi
+
+ln -- "$file" ~/.trash/$count
+
+path="$PWD/"$file""
+
+echo "$path:$count" >> ~/.trash.log
+let count=$count+1
+echo "$count" > count
+
+rm -- "$file"

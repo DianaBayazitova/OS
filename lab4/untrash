@@ -1,0 +1,43 @@
+#!/bin/bash
+
+file=$1
+
+if [[ -e "$file" ]]
+	then
+	echo "Error: the file already exists"
+	exit -3 >&2
+fi
+
+if [[ $# -ne 1 ]]
+	then
+	echo "Error: wrong number of arguments"
+	exit -2 >&2
+
+cd ~/
+
+logs="$(cat ".trash.log")"
+
+rm .trash.log
+for log in "$logs"; do
+	if [[ "$log" =~ "$file:" ]]
+		then
+		echo "Restore $log? Yes/No"
+		read answer
+		case $answer in
+		"Yes")
+			cd ~/.trash
+			trash="$(echo "$log" | awk -F: '{print $2}')"
+			dir="$(echo "$log" | awk -F: '{print $1}')"
+			ln -- "$trash" "$dir"
+			rm -- "$trash";;
+		"No")
+			echo "$log" >> .trash.log;;
+		*)
+			echo "Smth went wrong"
+			exit -4 >&2;;
+		esac
+	cd ~/
+	else
+		echo "$log" >> .trash.log
+	fi
+done
